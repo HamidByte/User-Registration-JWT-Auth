@@ -23,4 +23,9 @@ router.use('/forget-password', forgetPasswordRoute);
 router.post('/reset-password/:token', resetPasswordRoute);
 router.use('/profile', verifyToken, profileRoute);
 
+// Catch-all route for 404 errors
+router.use((req, res) => {
+  res.status(404).json({ message: 'Page not found' });
+});
+
 module.exports = router;

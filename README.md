@@ -208,6 +208,18 @@ The server will run at http://localhost:3000 by default.
     }
     ```
 
+### 404 Page Not Found
+
+- **Description:** Catch-all route to handle 404 errors.
+- **Response:**
+    ```json
+    {
+      "message": "Page not found"
+    }
+    ```
+
+This catch-all route will respond with a 404 status and a JSON message indicating that the requested page is not found.
+
 ## Middleware
 
 ### JWT Verification Middleware
