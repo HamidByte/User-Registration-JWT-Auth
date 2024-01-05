@@ -170,6 +170,44 @@ The server will run at http://localhost:3000 by default.
     }
     ```
 
+### Forget Password
+
+- **Endpoint:** `/forget-password`
+- **Method:** `POST`
+- **Description:** Initiate the process of resetting the user's password by sending a reset link to their email.
+- **Request Body:**
+    ```json
+    {
+      "email": "john.doe@example.com"
+    }
+    ```
+- **Response:**
+    ```json
+    {
+      "message": "Reset link sent successfully. Please check your email."
+    }
+    ```
+
+### Reset Password
+
+- **Endpoint:** `/reset-password/:token`
+- **Method:** `POST`
+- **Description:** Reset the user's password using the reset token sent via email.
+- **Parameters:**
+    - `token`: Reset token received via email.
+- **Request Body:**
+    ```json
+    {
+      "newPassword": "newPassword123"
+    }
+    ```
+- **Response:**
+    ```json
+    {
+      "message": "Password reset successful."
+    }
+    ```
+
 ## Middleware
 
 ### JWT Verification Middleware

@@ -22,6 +22,7 @@ router.get('/activate/:token', async (req, res) => {
     user.isActive = true;
     user.activationToken = undefined;
     user.activationExpires = undefined;
+    user.activatedAt = new Date(Date.now()),
     await user.save();
 
     res.status(200).json({ message: 'Account activated successfully.' });

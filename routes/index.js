@@ -9,6 +9,8 @@ const registerRoute = require('./registerRoute');
 const activationRoute = require('./activationRoute');
 const resendActivationRoute = require('./resendActivationRoute');
 const loginRoute = require('./loginRoute');
+const forgetPasswordRoute = require('./forgetPasswordRoute');
+const resetPasswordRoute = require('./resetPasswordRoute');
 const profileRoute = require('./profileRoute');
 
 // Use the individual route modules
@@ -17,6 +19,8 @@ router.use('/register', registerRoute);
 router.get('/activate/:token', activationRoute);
 router.use('/resend-activation', resendActivationRoute);
 router.use('/login', loginRoute);
+router.use('/forget-password', forgetPasswordRoute);
+router.post('/reset-password/:token', resetPasswordRoute);
 router.use('/profile', verifyToken, profileRoute);
 
 module.exports = router;

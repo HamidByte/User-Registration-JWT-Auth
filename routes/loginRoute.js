@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { jwtOptions } = require('../utils/constants');
 
 // Login endpoint
 router.post('/', async (req, res) => {
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 
     // Check if user exists
     if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid email' });
     }
 
     // Check if the account is activated
@@ -26,12 +27,15 @@ router.post('/', async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
     // Generate JWT token
-    const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h', algorithm: 'HS256' });
+    const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: jwtOptions.loginExpires, algorithm: jwtOptions.algorithm });
 
+    // Set the token as an HTTP cookie
+    res.cookie(jwtOptions.authToken, jwtToken, { httpOnly: true });
+    
     res.json({ token: jwtToken });
   } catch (error) {
     console.error(error);

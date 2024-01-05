@@ -6,11 +6,31 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
-  email: { type: String, unique: true },
+  email: {
+    type: String,
+    unique: true
+  },
   password: String,
+  resetToken: String,
+  resetTokenExpires: Date,
   activationToken: String,
   activationExpires: Date,
-  isActive: { type: Boolean, default: false },
+  isActive: {
+    type: Boolean,
+    default: false
+  },
+  activatedAt: {
+    type: Date,
+    default: null,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 // Hash the password before saving

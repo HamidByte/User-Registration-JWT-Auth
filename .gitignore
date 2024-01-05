@@ -1,9 +1,11 @@
-.DS_Store
 node_modules
-/dist
-/build
+.DS_Store
+dist
+build
 .husky
 .eslintcache
+*.local
+.vscode
 
 # local env files
 .env
