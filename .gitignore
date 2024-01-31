@@ -6,6 +6,7 @@ build
 .eslintcache
 *.local
 .vscode
+package-lock.json
 
 # local env files
 .env

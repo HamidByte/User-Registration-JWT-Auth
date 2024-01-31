@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { mongoURI } = require('./dbConfig');
 
-const connectDB = async () => {
+const connection = async () => {
   try {
     await mongoose.connect(mongoURI);
     console.log('Connected to MongoDB');
@@ -11,4 +11,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connection;

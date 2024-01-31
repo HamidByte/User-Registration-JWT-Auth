@@ -2,7 +2,7 @@ const express = require('express');
 var path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
-const connectDB = require('./config/db');
+const connection = require('./config/db');
 // const helmet = require('helmet');
 
 const app = express();
@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
-connectDB();
+connection();
 
 // Use routes from the 'routes' directory
 app.use('/', routes);
